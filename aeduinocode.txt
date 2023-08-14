@@ -1,0 +1,37 @@
+const int ledPin = 13;
+void setup() {
+  // initialize serial communication at 9600 bits per second:
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+  // read the inputs on analog pins A0, A1, A2, and A3:
+  int sensorValue1 = analogRead(A0);
+  int sensorValue2 = analogRead(A1);
+  int sensorValue3 = analogRead(A2);
+  int sensorValue4 = analogRead(A3);
+
+  // Convert the analog readings (which go from 0 - 1023) to voltages (0 - 5V):
+  int voltage1 = sensorValue1 * (5.0 / 1023.0);
+  int voltage2 = sensorValue2 * (5.0 / 1023.0);
+  int voltage3 = sensorValue3 * (5.0 / 1023.0);
+  int voltage4 = sensorValue4 * (5.0 / 1023.0);
+  
+  digitalWrite(ledPin, HIGH);
+  // print out the values you read:
+  Serial.print("Voltage 1: ");
+  Serial.println(voltage1);
+  Serial.print("Voltage 2: ");
+  Serial.println(voltage2);
+  Serial.print("Voltage 3: ");
+  Serial.println(voltage3);
+  Serial.print("Voltage 4: ");
+  Serial.println(voltage4);
+  //delay(1000); // Wait for 10 seconds
+  digitalWrite(ledPin, LOW); // Turn off the LED
+  
+  // Add a delay to prevent the serial monitor from being flooded with data:
+  delay(1000);
+}
